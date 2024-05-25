@@ -8,7 +8,18 @@
 # This module is forked from https://github.com/gruntwork-io/intro-to-terraform/tree/master/s3-backend
 # ----------------------------------------------------------------------------------------------------------------------
 
-terraform {
+terraform  {
+ backend = "s3" {
+        bucket = "terraform_state"
+        key = "some_environment/terraform.tfstate"
+        region = "us-east-1"
+        encrypt = true
+        kms_key_id = "LockID"
+        dynamodb_table = "terraform_lock"
+        }
+}
+
+{
   required_version = ">= 0.12"
 }
 
